@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aroma & Dulzura | Menú De Especialidades</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: #120a07; color: #f4e1d2; min-height: 100vh; display: flex; flex-direction: column; }
+        
+        /* Navbar */
+        header { position: fixed; top: 0; width: 100%; background-color: rgba(18, 10, 7, 0.96); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid #2c1a11; backdrop-filter: blur(8px); }
+        header .logo { font-size: 28px; font-weight: 700; letter-spacing: 1px; color: #d4a373; text-decoration: none; font-family: 'Georgia', serif; font-style: italic; }
+        nav { display: flex; align-items: center; gap: 30px; }
+        nav a { color: #f4e1d2; text-decoration: none; font-weight: 500; font-size: 1.05rem; transition: color 0.3s; }
+        nav a:hover, nav a.activo { color: #d4a373; }
+        
+        .btn-llamada-nav { background-color: transparent; color: #d4a373; border: 1px solid #d4a373; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s ease; }
+        .btn-llamada-nav:hover { background-color: #d4a373; color: #120a07; box-shadow: 0 0 15px rgba(212, 163, 115, 0.4); transform: translateY(-2px); }
+
+        /* Menu Section */
+        section { padding: 140px 20px 80px 20px; max-width: 1000px; margin: 0 auto; width: 100%; text-align: center; }
+        h2 { font-family: 'Georgia', serif; font-size: 3rem; color: #fff; margin-bottom: 10px; font-weight: 400; }
+        .subtitle { color: #d4a373; font-style: italic; font-size: 1rem; margin-bottom: 40px; }
+
+        .categoria-titulo { font-family: 'Georgia', serif; text-align: left; font-size: 1.8rem; color: #e6b88a; margin: 40px 0 20px 0; padding-bottom: 10px; border-bottom: 1px solid #2c1a11; display: flex; align-items: center; gap: 15px; }
+        .categoria-titulo i { color: #d4a373; font-size: 1.4rem; }
+
+        .menu-grid { display: grid; grid-template-columns: 1fr; gap: 20px; width: 100%; text-align: left; }
+        
+        .menu-item { background-color: #1c120c; border: 1px solid #2c1a11; border-radius: 12px; overflow: hidden; transition: all 0.3s ease; cursor: pointer; }
+        .menu-item:hover { border-color: #d4a373; background-color: #23170f; }
+        
+        .menu-header { padding: 25px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+        .menu-info { flex-grow: 1; }
+        .menu-title-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+        .menu-info h3 { font-family: 'Georgia', serif; font-size: 1.35rem; color: #fff; font-weight: 400; }
+        .precio { color: #d4a373; font-weight: 700; font-size: 1.25rem; white-space: nowrap; }
+        .menu-info p { color: #bca895; font-size: 0.95rem; line-height: 1.5; padding-right: 20px; }
+        
+        .flecha-icon { color: #7a6555; font-size: 1.1rem; transition: transform 0.3s, color 0.3s; margin-left: 10px; }
+        .menu-item.activo .flecha-icon { transform: rotate(180deg); color: #d4a373; }
+
+        /* Detalles Desplegables Extra */
+        .menu-detalles { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease; background-color: #160e09; color: #c4af9a; font-size: 0.9rem; }
+        .menu-item.activo .menu-detalles { max-height: 150px; padding: 20px 25px; border-top: 1px solid #2c1a11; }
+        .menu-detalles ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .menu-detalles li { display: flex; align-items: center; gap: 10px; }
+        .menu-detalles li i { color: #d4a373; font-size: 0.85rem; }
+
+        /* Floating Call Action on Mobile */
+        .cta-flotante { position: fixed; bottom: 30px; right: 30px; background-color: #d4a373; color: #120a07; padding: 15px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 10px; box-shadow: 0 5px 25px rgba(0,0,0,0.5); z-index: 999; transition: transform 0.3s; }
+        .cta-flotante:hover { transform: scale(1.05); background-color: #e6b88a; }
+
+        /* Footer */
+        footer { background-color: #0b0604; padding: 40px 20px; text-align: center; border-top: 1px solid #1c120c; margin-top: 60px; color: #7a6555; font-size: 0.9rem; }
+        footer a { color: #d4a373; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            header { padding: 20px; flex-direction: column; gap: 15px; text-align: center; }
+            nav { width: 100%; justify-content: center; flex-wrap: wrap; gap: 20px; }
+            section { padding-top: 180px; }
+            h2 { font-size: 2.3rem; }
+            .menu-header { padding: 20px; }
+            .menu-title-row { flex-direction: column; gap: 5px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Aroma & Dulzura</a>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="menu.html" class="activo">Nuestro Menú</a>
+            <a href="tel:9280000000" class="btn-llamada-nav"><i class="fa-solid fa-phone"></i> Ordenar ahora</a>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Menú de Especialidades</h2>
+        <p class="subtitle">✨ Toca cualquier delicia para ver opciones de personalización y extras</p>
+
+        <!-- CATEGORÍA 1: CAFÉS HELADOS -->
+        <div class="categoria-titulo">
+            <i class="fa-solid fa-snowflake"></i> Cafés Helados & Frappés
+        </div>
+        
+        <div class="menu-grid">
+            <div class="menu-item" onclick="toggleMenuItem(this)">
+                <div class="menu-header">
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h3>Frappé Caramelo Supremo</h3>
+                            <span class="precio">$5.50</span>
+                        </div>
+                        <p>Café espresso premium mezclado con hielo, leche cremosa y un remolino de caramelo artesanal. Coronado con crema batida.</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-down flecha-icon"></i>
+                </div>
+                <div class="menu-detalles">
+                    <ul>
+                        <li><i class="fa-solid fa-circle-check"></i> <b>Extras disponibles:</b> Doble shot de espresso (+$1.00), Jarabe de vainilla (+$0.50)</li>
+                        <li><i class="fa-solid fa-leaf"></i> Opciones de leche: Entera, Almendra, Avena o Coco.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="menu-item" onclick="toggleMenuItem(this)">
+                <div class="menu-header">
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h3>Iced Vanilla Latte</h3>
+                            <span class="precio">$4.75</span>
+                        </div>
+                        <p>Doble shot de espresso vertido sobre leche fría y jarabe de vainilla de Madagascar, servido sobre abundante hielo grueso.</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-down flecha-icon"></i>
+                </div>
+                <div class="menu-detalles">
+                    <ul>
+                        <li><i class="fa-solid fa-circle-check"></i> Versión disponible sin azúcar (Jarabe de vainilla sugar-free).</li>
+                        <li><i class="fa-solid fa-star"></i> El favorito de la casa por su equilibrio y frescura.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="menu-item" onclick="toggleMenuItem(this)">
+                <div class="menu-header">
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h3>Mocha Blanco Helado</h3>
+                            <span class="precio">$5.25</span>
+                        </div>
+                        <p>Café espresso combinado con rica salsa de chocolate blanco fundido, leche fría de tu elección y hielo picado fino.</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-down flecha-icon"></i>
+                </div>
+                <div class="menu-detalles">
+                    <ul>
+                        <li><i class="fa-solid fa-circle-check"></i> <b>Topping:</b> Chispas de chocolate blanco y un toque de canela.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORÍA 2: POSTRES -->
+        <div class="categoria-titulo">
+            <i class="fa-solid fa-cake-slice"></i> Postres Artesanales
+        </div>
+
+        <div class="menu-grid">
+            <div class="menu-item" onclick="toggleMenuItem(this)">
+                <div class="menu-header">
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h3>Cheesecake de Frutos del Bosque</h3>
+                            <span class="precio">$6.00</span>
+                        </div>
+                        <p>Base crujiente de galleta de mantequilla, relleno denso y cremoso de queso crema premium, cubierto con una mermelada rústica de fresas, moras y frambuesas.</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-down flecha-icon"></i>
+                </div>
+                <div class="menu-detalles">
+                    <ul>
+                        <li><i class="fa-solid fa-circle-check"></i> 100% horneado a fuego lento, sin conservadores.</li>
+                        <li><i class="fa-solid fa-ice-cream"></i> Marida perfectamente con un Iced Vanilla Latte.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="menu-item" onclick="toggleMenuItem(this)">
+                <div class="menu-header">
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h3>Volcán de Chocolate Amargo</h3>
+                            <span class="precio">$6.50</span>
+                        </div>
+                        <p>Bizcocho suave de chocolate belga al 70% con un corazón líquido caliente que fluye al primer corte. Acompañado de una bola de helado de vainilla artesanal.</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-down flecha-icon"></i>
+                </div>
+                <div class="menu-detalles">
+                    <ul>
+                        <li><i class="fa-solid fa-clock"></i> Servido idealmente templado para mantener el centro fundido.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="menu-item" onclick="toggleMenuItem(this)">
+                <div class="menu-header">
+                    <div class="menu-info">
+                        <div class="menu-title-row">
+                            <h3>Tarta Rústica de Manzana</h3>
+                            <span class="precio">$5.75</span>
+                        </div>
+                        <p>Hojaldre crujiente relleno de manzanas caramelizadas con canela, azúcar morena y un toque sutil de nuez moscada.</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-down flecha-icon"></i>
+                </div>
+                <div class="menu-detalles">
+                    <ul>
+                        <li><i class="fa-solid fa-circle-check"></i> Horneada fresca cada mañana.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Botón Flotante para llamar desde celular directamente al mirar el menú -->
+
+    <footer>
+        <p>&copy; 2026 Aroma & Dulzura. Todos los derechos reservados.</p>
+        <p>Pedidos e información al <a href="tel:9280000000">(928) 000-0000</a></p>
+    </footer>
+
+    <script>
+        function toggleMenuItem(elemento) {
+            const estaActivo = elemento.classList.contains('activo');
+            // Cierra los demás acordeones abiertos para mantener orden estético
+            document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('activo'));
+            
+            // Si el elemento clickeado no estaba activo, lo activa
+            if (!estaActivo) {
+                elemento.classList.add('activo');
+            }
+        }
+    </script>
+</body>
+</html>

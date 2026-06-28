@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aroma & Dulzura | Café y Postres Artesanales</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; }
+        body { background-color: #120a07; color: #f4e1d2; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+        
+        /* Navbar */
+        header { position: fixed; top: 0; width: 100%; background-color: rgba(18, 10, 7, 0.96); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 1px solid #2c1a11; backdrop-filter: blur(8px); }
+        header .logo { font-size: 28px; font-weight: 700; letter-spacing: 1px; color: #d4a373; text-decoration: none; font-family: 'Georgia', serif; font-style: italic; text-shadow: 0 0 15px rgba(212, 163, 115, 0.2); }
+        nav { display: flex; align-items: center; gap: 30px; }
+        nav a { color: #f4e1d2; text-decoration: none; font-weight: 500; font-size: 1.05rem; transition: color 0.3s; }
+        nav a:hover, nav a.activo { color: #d4a373; }
+        
+        .btn-llamada-nav { background-color: transparent; color: #d4a373; border: 1px solid #d4a373; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s ease; }
+        .btn-llamada-nav:hover { background-color: #d4a373; color: #120a07; box-shadow: 0 0 15px rgba(212, 163, 115, 0.4); transform: translateY(-2px); }
+
+        /* Hero Section */
+        #hero { padding: 160px 20px 100px 20px; min-height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(rgba(18, 10, 7, 0.5), rgba(18, 10, 7, 1)), url('https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1200') no-repeat center center/cover; }
+        #hero h1 { font-family: 'Georgia', serif; font-size: 4rem; font-weight: 400; line-height: 1.2; margin-bottom: 25px; color: #fff; text-shadow: 0 2px 15px rgba(0,0,0,0.6); }
+        #hero h1 span { color: #d4a373; font-style: italic; }
+        #hero p { font-size: 1.25rem; color: #c4af9a; margin-bottom: 40px; max-width: 650px; line-height: 1.6; }
+        
+        .btn-principal { background-color: #d4a373; color: #120a07; padding: 16px 40px; text-decoration: none; font-weight: bold; border-radius: 50px; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(212, 163, 115, 0.3); letter-spacing: 0.5px; }
+        .btn-principal:hover { background-color: #e6b88a; transform: scale(1.05); box-shadow: 0 6px 25px rgba(212, 163, 115, 0.5); }
+
+        /* Features Section */
+        .features { padding: 80px 40px; max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .feature-card { background-color: #1c120c; border: 1px solid #2c1a11; padding: 40px 30px; border-radius: 15px; text-align: center; transition: all 0.3s; }
+        .feature-card:hover { border-color: #d4a373; transform: translateY(-5px); }
+        .feature-card i { font-size: 2.5rem; color: #d4a373; margin-bottom: 20px; }
+        .feature-card h3 { font-family: 'Georgia', serif; font-size: 1.5rem; margin-bottom: 15px; color: #fff; }
+        .feature-card p { color: #bca895; font-size: 0.95rem; line-height: 1.6; }
+
+        /* Footer */
+        footer { background-color: #0b0604; padding: 40px 20px; text-align: center; border-top: 1px solid #1c120c; margin-top: auto; color: #7a6555; font-size: 0.9rem; }
+        footer p { margin-bottom: 10px; }
+        footer a { color: #d4a373; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            header { padding: 20px; flex-direction: column; gap: 15px; text-align: center; }
+            nav { width: 100%; justify-content: center; flex-wrap: wrap; gap: 20px; }
+            #hero h1 { font-size: 2.6rem; }
+            #hero p { font-size: 1.1rem; }
+            .features { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Aroma & Dulzura</a>
+        <nav>
+            <a href="index.html" class="activo">Inicio</a>
+            <a href="menu.html">Nuestro Menú</a>
+            <a href="tel:9280000000" class="btn-llamada-nav"><i class="fa-solid fa-phone"></i> Ordenar ahora</a>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <h1>Momentos dulces,<br>cafés <span>inolvidables</span></h1>
+        <p>Descubre nuestra exquisita selección de repostería artesanal horneada diariamente y cafés helados perfectamente equilibrados para refrescar tu día.</p>
+        <a href="menu.html" class="btn-principal">EXPLORAR MENÚ</a>
+    </section>
+
+    <section class="features">
+        <div class="feature-card">
+            <i class="fa-solid fa-mug-hot"></i>
+            <h3>Café de Especialidad</h3>
+            <p>Granos seleccionados con un tostado perfecto, extraídos en frío e infundidos con texturas cremosas.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa-solid fa-cake-candles"></i>
+            <h3>Repostería Fina</h3>
+            <p>Postres creados desde cero por manos expertas utilizando ingredientes locales y de la más alta calidad.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa-solid fa-ice-cream"></i>
+            <h3>Toque Helado</h3>
+            <p>Frappés deliciosos, lattes helados y combinaciones únicas diseñadas para los amantes del dulzor fresco.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Aroma & Dulzura. Todos los derechos reservados.</p>
+        <p>¿Tienes un antojo? Llámanos al <a href="tel:9280000000">(928) 000-0000</a></p>
+    </footer>
+</body>
+</html>
